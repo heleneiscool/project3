@@ -12,11 +12,11 @@ int** renderImageCore(){ //2 asterix to return 2d array
 	for(int col = 0; col < cameraView.width; col ++){
 	for ( int row = 0; row < camera.View.height; row++){
 		curPix = get_pixel(row, col, 3); //will get the 3 values of rgb
-		if(curPix > 200) //if its basically white
+		if(curPix > 200){ //if its basically white
 		pixels[row][col]= 1; // will go through entire image one pixel at a time, put value in curpix
-		else 
+		}else {
 			pixels[row][col]= 0;
-		       
+		}
 		
 	}
 	}
