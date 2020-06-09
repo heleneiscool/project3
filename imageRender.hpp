@@ -8,7 +8,7 @@ int* renderImageCore(){
 
     int imageSize = cameraView.height * cameraView.width;
 
-	int*  pixels[imageSize]; 
+	int*  pixels = new int[imageSize]; 
 //scan horizontal array and then divide all by 2 and if pix > 200 then its white and then change motor speed. if n of array is >200 on right side then lower speed vRight
 
 	
@@ -21,9 +21,9 @@ int* renderImageCore(){
 			for(int row = 0; row < cameraView.height; row++){
 				curPix = get_pixel(cameraView, row, col, 3);
 				if(curPix > 200) {
-					pixels[row] = 1;
+					pixels[row*col] = 1;
 				}else {
-					pixels[row] = 0;
+					pixels[row*col] = 0;
 				}	
 				
 			}
