@@ -4,7 +4,7 @@ Team Members & contact info:
 chawangray@vuw.ac.nz
 helenehickey.contact@gmail.com
 jackmkirkland@gmail.com
-Naputrinady@vuw.ac.nz
+putrinady@vuw.ac.nz
 
 Communication tool:
  Google doc, Facebook
