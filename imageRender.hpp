@@ -5,7 +5,7 @@ int** renderImageCore(){ //2 asterix to return 2d array
     int imageSize = cameraView.height * cameraView.width; //array that holds arrays
 	int  pixels[cameraView.height][cameraView.width]; //note: i reliase that there is a better way to set a list length to the value of a varible but i cant remeber it, so please do update this
 	
-	OpenPPMFile("i0.ppm");
+	OpenPPMFile("i0.ppm", cameraView);
     // for pixel in image 
 		//get the pixel:
 	Pixel curPix; // current pixel
