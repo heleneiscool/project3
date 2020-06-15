@@ -1,0 +1,6 @@
+How to change core maze to completion maze:
+
+AVC_Server >> config.txt
+
+Change mazeFile,core.txt to mazeFile,completion.txt 
+Same method used to get to challenge maze
