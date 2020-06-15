@@ -19,7 +19,7 @@ int main(){
 	
 
    
-   const int CameraWidth = 150;
+   //const int CameraWidth = 150;
 
     double vLeft = 40.0;
 
@@ -36,16 +36,16 @@ int main(){
 		double Line_position = 0;                  // While true is going in a loop analyzing the frames
 
 		int white = 0; 
-
+		
 		int CameraWidth = 150;    
 
-		int Middlerow = 50;                        // 150 is the width of the Camera View
+		int Middlerow = cameraView.height/2;                        // 150 is the width of the Camera View
 
 		                                               // Stores the amount of white pixels stored
 
-		for (int i = 0; i < 150; i++){                           
+		for (int i = 0; i < CameraWidth; i++){                           
 
-			int brightness = get_pixel(cameraView, 50, i, 3);       // Brightness of the pixels
+			int brightness = get_pixel(cameraView, Middlerow, i, 3);       // Brightness of the pixels
 
 			//std::cout<<brightness<<" ";
 
