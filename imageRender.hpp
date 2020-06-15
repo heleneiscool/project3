@@ -21,9 +21,9 @@ int* renderImageCore(){
 			for(int row = 0; row < cameraView.height; row++){
 				curPix = get_pixel(cameraView, row, col, 3);
 				if(curPix > 200) {
-					pixels[row*col] = 1;
+					pixels[row*col+col] = 1;
 				}else {
-					pixels[row*col] = 0;
+					pixels[row*col+col] = 0;
 				}	
 				
 			}
