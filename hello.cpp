@@ -69,13 +69,16 @@ void renderImageChallenge(){
 	}
 
 	int leftSide=0;
-	bool checking = true;
-	for(int col=0; col<cameraView.width & checking; col++){
+	bool checking = false;
+	for(int col=0; col<cameraView.width; col++){
 	for(int row=0; row<cameraView.height; row++){
 		
 		int redness = get_pixel(cameraView, row, col, 0);
 			int nonRed = (get_pixel(cameraView, row, col, 1)+get_pixel(cameraView, row, col, 2))/2;
-			if(redness>nonRed*1.05){
+			if(redness>nonRed*1.05 & !checking){
+				checking = true;
+			}
+			if(redness>nonRed*1.05 & checking){
 				leftSide++;
 			}
 			else{
@@ -86,13 +89,16 @@ void renderImageChallenge(){
 }
 int rightSide=0;
 
-checking = true;
-	for(int col=cameraView.width-1; col>0 & checking; col--){
+checking = false;
+	for(int col=cameraView.width-1; col>0; col--){
 	for(int row=0; row<cameraView.height; row++){
 		
 		int redness = get_pixel(cameraView, row, col, 0);
 			int nonRed = (get_pixel(cameraView, row, col, 1)+get_pixel(cameraView, row, col, 2))/2;
-			if(redness>nonRed*1.05){
+			if(redness>nonRed*1.05 & !checking){
+				checking =true;
+			}
+			if(redness>nonRed*1.05 & checking){
 				rightSide++;
 			}
 			else{
@@ -111,6 +117,7 @@ checking = true;
 		int difference = leftSide-rightSide;
 		setMotors(40+difference, 40-difference);
 	}
+	std::cout<<"left"<<leftSide<<" right="<<rightSide<<" redrow="<<redRow<<std::endl;
 	int checkRight = cameraView.width-1;
 }
 }
