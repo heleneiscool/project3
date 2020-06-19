@@ -44,11 +44,22 @@ LineReading renderImageCompletion(){
 }
 
 void renderImageChallenge(){
+	LineReading checkIfWhite = renderImageCompletion();
+	if(checkIfWhite.topLine>0){
+		//go foward if no line to the right but there is one foward
+		double col = checkIfWhite.topPosition/checkIfWhite.topLine;
+		double difference = cameraView.width/2 - col;
+		double delta = 30*(difference/cameraView.width);
+		double vLeft =40- delta;
+		double vRight =40+ delta;
+		setMotors(vLeft,vRight);  
+	}
+	else{
 	int checkRow = 80;
 	int redRow = 0;
 	for(int col=0; col<cameraView.width; col++){
-		int redness = get_pixel(cameraView, row, col, 0);
-			int nonRed = (get_pixel(cameraView, row, col, 1)+get_pixel(cameraView, row, col, 2))/2;
+		int redness = get_pixel(cameraView, redRow, col, 0);
+			int nonRed = (get_pixel(cameraView, redRow, col, 1)+get_pixel(cameraView, redRow, col, 2))/2;
 			if(redness>nonRed*1.05){
 				redRow++;
 			}
@@ -56,11 +67,10 @@ void renderImageChallenge(){
 				break;
 			}
 	}
-	if(redRow>cameraView.width*0.8){
-		setMotors(60,20); 
-	}
+
 	int leftSide=0;
-	for(int col=0; col<cameraView.width; col++){
+	bool checking = true;
+	for(int col=0; col<cameraView.width & checking; col++){
 	for(int row=0; row<cameraView.height; row++){
 		
 		int redness = get_pixel(cameraView, row, col, 0);
@@ -69,12 +79,15 @@ void renderImageChallenge(){
 				leftSide++;
 			}
 			else{
+				checking = false;
 				break;
 			}
 	}
 }
 int rightSide=0;
-	for(int col=cameraView.width-1; col>0; col--){
+
+checking = true;
+	for(int col=cameraView.width-1; col>0 & checking; col--){
 	for(int row=0; row<cameraView.height; row++){
 		
 		int redness = get_pixel(cameraView, row, col, 0);
@@ -83,9 +96,21 @@ int rightSide=0;
 				rightSide++;
 			}
 			else{
+				checking=false;
 				break;
 			}
 	}
 }
+	if(redRow>cameraView.width*0.8){
+		setMotors(60,20); 
+	}
+	else if(rightSide==0){
+		setMotors(60,20);
+	}
+	else{
+		int difference = leftSide-rightSide;
+		setMotors(40+difference, 40-difference);
+	}
 	int checkRight = cameraView.width-1;
+}
 }
